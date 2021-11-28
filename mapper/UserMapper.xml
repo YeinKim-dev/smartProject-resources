@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.project.proc.UserMapper" >
+
+    <resultMap id="test" type="com.smart.project.web.home.vo.userVO">
+    <result column="USER_N" property="userN"/>
+        <result column="USER_IMG" property="userImg"/>
+    <result column="USER_ID" property="userId"/>
+    <result column="USER_PW" property="userPw"/>
+    <result column="USER_NAME" property="userName"/>
+    <result column="USER_BIRTH" property="userBirth"/>
+    <result column="USER_SEX" property="userSex"/>
+    <result column="USER_TEL" property="userTel"/>
+    <result column="USER_SMOKE" property="userSmoke"/>
+    <result column="USER_DRINK" property="userDrink"/>
+    <result column="USER_LOC" property="userLoc"/>
+    <result column="USER_HOBBY" property="userHobby"/>
+    <result column="USER_RELIGION" property="userReligion"/>
+    <result column="USER_INTD" property="userIntd"/>
+    <result column="USER_TYPE" property="userType"/>
+    </resultMap>
+
+
+    <select id="userList" resultMap="test">
+        select *
+        from USER_ACCOUNT
+        order by USER_N
+    </select>
+
+    <select id="userInfo" resultMap="test" parameterType="com.smart.project.web.home.vo.userVO" >
+        select *
+        from USER_ACCOUNT
+        where user_id = #{userId, jdbcType = VARCHAR}
+    </select>
+
+
+    <select id="Login" parameterType="java.lang.String" resultType="com.smart.project.web.home.vo.userVO">
+        select user_name
+        from user_account
+        where user_id=#{userId,jdbcType=VARCHAR} and user_pw=#{userPw,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="userInsert"  parameterType="com.smart.project.web.home.vo.userVO">
+        INSERT INTO USER_ACCOUNT(USER_N, USER_IMG, USER_ID, USER_PW, USER_NAME, USER_BIRTH, USER_TEL, USER_SEX, USER_SMOKE, USER_DRINK, USER_LOC, USER_HOBBY, USER_RELIGION, USER_INTD, USER_TYPE)
+        VALUES(user_n_seq.nextval, #{userImg,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userPw,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userBirth,jdbcType=VARCHAR},
+               #{userTel,jdbcType=VARCHAR}, #{userSex,jdbcType=VARCHAR}, #{userSmoke,jdbcType=VARCHAR},#{userDrink,jdbcType=VARCHAR},#{userLoc,jdbcType=VARCHAR},
+               #{userHobby,jdbcType=VARCHAR}, #{userReligion,jdbcType=VARCHAR},#{userIntd,jdbcType=VARCHAR},#{userType,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="loginAction" resultMap="test" parameterType="com.smart.project.web.home.vo.userVO">
+        SELECT *
+        FROM user_account
+        WHERE USER_ID = #{userId,jdbcType=VARCHAR} AND USER_PW = #{userPw,jdbcType=VARCHAR}
+    </select>
+
+    <select id="idChk" resultType="int">
+        SELECT count(*)
+        FROM user_account
+        WHERE USER_ID = #{userId}
+    </select>
+
+
+    <delete id="userDelete">
+        delete from USER_ACCOUNT
+        where user_id = #{userId}
+    </delete>
+
+    <update id="userUpdate" parameterType="com.smart.project.web.home.vo.userVO">
+        update USER_ACCOUNT
+        set user_pw=#{userPw, jdbcType=VARCHAR}, user_smoke=#{userSmoke,jdbcType=VARCHAR}, user_drink=#{userDrink,jdbcType=VARCHAR},
+            user_loc=#{userLoc,jdbcType=VARCHAR}, user_hobby=#{userHobby,jdbcType=VARCHAR},
+            user_religion=#{userReligion,jdbcType=VARCHAR},user_Intd=#{userIntd,jdbcType=VARCHAR}
+        where user_id = #{userId, jdbcType=VARCHAR} and user_pw = #{userPw, jdbcType=VARCHAR}
+    </update>
+
+    <update id="userUpdate2" parameterType="com.smart.project.web.home.vo.userVO">
+        update USER_ACCOUNT
+        set user_loc=#{userLoc,jdbcType=VARCHAR}
+        where user_id = #{userId, jdbcType=VARCHAR}
+    </update>
+
+
+
+</mapper>

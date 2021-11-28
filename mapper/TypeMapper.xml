@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.project.proc.TypeMapper" >
+
+    <resultMap id="test1" type="com.smart.project.web.home.vo.TypeVO">
+        <result column="USER_TYPE" property="userType"/>
+        <result column="TYPE_NAME" property="typeName"/>
+        <result column="TYPE_DESC" property="typeDesc"/>
+        <result column="TYPE_MBTI" property="typeMbti"/>
+    </resultMap>
+
+    <resultMap id="test" type="com.smart.project.web.home.vo.userVO">
+        <result column="USER_TYPE" property="userType"/>
+    </resultMap>
+
+
+    <select id="mbtiResult" resultType="com.smart.project.web.home.vo.TypeVO" >
+        SELECT user_type, type_name, type_desc, type_mbti, match_type
+        FROM PERSONALITY_TYPE
+    </select>
+
+    <update id="mbtiUpdate"  parameterType="com.smart.project.web.home.vo.userVO">
+        UPDATE user_account
+        SET user_type = #{userType, jdbcType = VARCHAR}
+        WHERE user_id = #{userId, jdbcType = VARCHAR}
+    </update>
+
+    <insert id = "HeartInsert" parameterType="com.smart.project.web.home.vo.HeartVO">
+        INSERT INTO MATCHING(MATCHING_N, USER_ID, OTHER_ID, MATCHING_DATE)
+        VALUES(MATCHING_N_SEQ.nextval,#{userId,jdbcType=VARCHAR},#{otherId,jdbcType=VARCHAR},SYSDATE)
+    </insert>
+
+    <select id="heartList"  parameterType="com.smart.project.web.home.vo.userVO" resultType="com.smart.project.web.home.vo.userVO">
+        select *
+        from user_account_view
+        where user_id in (select user_id from matching where other_id = #{userId, jdbcType = VARCHAR})
+    </select>
+
+
+
+</mapper>

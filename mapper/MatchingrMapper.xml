@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.project.proc.MatchingMapper" >
+
+    <resultMap id="test" type="com.smart.project.web.home.vo.userVO">
+    <result column="USER_N" property="userN"/>
+        <result column="USER_IMG" property="userImg"/>
+    <result column="USER_ID" property="userId"/>
+    <result column="USER_PW" property="userPw"/>
+    <result column="USER_NAME" property="userName"/>
+    <result column="USER_BIRTH" property="userBirth"/>
+    <result column="USER_SEX" property="userSex"/>
+    <result column="USER_TEL" property="userTel"/>
+    <result column="USER_SMOKE" property="userSmoke"/>
+    <result column="USER_DRINK" property="userDrink"/>
+    <result column="USER_LOC" property="userLoc"/>
+    <result column="USER_HOBBY" property="userHobby"/>
+    <result column="USER_RELIGION" property="userReligion"/>
+    <result column="USER_INTD" property="userIntd"/>
+    <result column="USER_TYPE" property="userType"/>
+        <result column="USER_AGE" property="userAge"/>
+    </resultMap>
+
+
+    <select id="RecList108" resultMap="test" parameterType="com.smart.project.web.home.vo.userVO">
+        select *
+        from USER_ACCOUNT_VIEW
+        where user_sex != #{userSex, jdbcType = VARCHAR}
+        and (user_type = '108MHz' or user_type = '94MHz')
+    </select>
+
+    <select id="RecList89" resultMap="test" parameterType="com.smart.project.web.home.vo.userVO">
+        select *
+        from USER_ACCOUNT_VIEW
+        where user_sex != #{userSex, jdbcType = VARCHAR}
+          and (user_type = '89MHz' or user_type = '95MHz'or user_type = '109MHz')
+    </select>
+
+    <select id="RecList80" resultMap="test" parameterType="com.smart.project.web.home.vo.userVO">
+        select *
+        from USER_ACCOUNT_VIEW
+        where user_sex != #{userSex, jdbcType = VARCHAR}
+          and user_type = '80MHz'
+    </select>
+
+    <select id="RecList114" resultMap="test" parameterType="com.smart.project.web.home.vo.userVO">
+        select *
+        from USER_ACCOUNT_VIEW
+        where user_sex != #{userSex, jdbcType = VARCHAR}
+          and (user_type = '114MHz' or user_type = '85MHz')
+    </select>
+
+    <select id="RecList100" resultMap="test" parameterType="com.smart.project.web.home.vo.userVO">
+        select *
+        from USER_ACCOUNT_VIEW
+        where user_sex != #{userSex, jdbcType = VARCHAR}
+          and user_type = '100MHz'
+    </select>
+
+    <select id="RecList95" resultMap="test" parameterType="com.smart.project.web.home.vo.userVO">
+        select *
+        from USER_ACCOUNT_VIEW
+        where user_sex != #{userSex, jdbcType = VARCHAR}
+          and (user_type = '89MHz' or user_type = '95MHz')
+    </select>
+
+    <select id="RecList109" resultMap="test" parameterType="com.smart.project.web.home.vo.userVO">
+        select *
+        from USER_ACCOUNT_VIEW
+        where user_sex != #{userSex, jdbcType = VARCHAR}
+          and (user_type = '109MHz' or user_type = '89MHz')
+    </select>
+
+    <select id="RecList110" resultMap="test" parameterType="com.smart.project.web.home.vo.userVO">
+        select *
+        from USER_ACCOUNT_VIEW
+        where user_sex != #{userSex, jdbcType = VARCHAR}
+          and (user_type = '110MHz' or user_type = '105MHz')
+    </select>
+
+    <select id="RecList96" resultMap="test" parameterType="com.smart.project.web.home.vo.userVO">
+        select *
+        from USER_ACCOUNT_VIEW
+        where user_sex != #{userSex, jdbcType = VARCHAR}
+          and user_type = '96MHz'
+    </select>
+
+    <select id="RecList91" resultMap="test" parameterType="com.smart.project.web.home.vo.userVO">
+        select *
+        from USER_ACCOUNT_VIEW
+        where user_sex != #{userSex, jdbcType = VARCHAR}
+          and user_type = '91MHz'
+    </select>
+
+    <select id="RecList105" resultMap="test" parameterType="com.smart.project.web.home.vo.userVO">
+        select *
+        from USER_ACCOUNT_VIEW
+        where user_sex != #{userSex, jdbcType = VARCHAR}
+          and (user_type = '110MHz' or user_type = '105MHz')
+    </select>
+
+    <select id="RecList104" resultMap="test" parameterType="com.smart.project.web.home.vo.userVO">
+        select *
+        from USER_ACCOUNT_VIEW
+        where user_sex != #{userSex, jdbcType = VARCHAR}
+          and (user_type = '104MHz' or user_type = '99MHz')
+    </select>
+
+    <select id="RecList90" resultMap="test" parameterType="com.smart.project.web.home.vo.userVO">
+        select *
+        from USER_ACCOUNT_VIEW
+        where user_sex != #{userSex, jdbcType = VARCHAR}
+          and (user_type = '90MHz')
+    </select>
+
+    <select id="RecList85" resultMap="test" parameterType="com.smart.project.web.home.vo.userVO">
+        select *
+        from USER_ACCOUNT_VIEW
+        where user_sex != #{userSex, jdbcType = VARCHAR}
+          and (user_type = '85MHz' or user_type = '114MHz')
+    </select>
+
+    <select id="RecList99" resultMap="test" parameterType="com.smart.project.web.home.vo.userVO">
+        select *
+        from USER_ACCOUNT_VIEW
+        where user_sex != #{userSex, jdbcType = VARCHAR}
+          and (user_type = '99MHz' or user_type = '104MHz')
+    </select>
+
+    <select id="genderChk" resultMap="test" parameterType="com.smart.project.web.home.vo.userVO" >
+        select *
+        from USER_ACCOUNT_VIEW
+        where user_id = #{userId, jdbcType = VARCHAR}
+    </select>
+
+</mapper>
